@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Task 3</title>
+  <link rel="stylesheet" href="task3.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<center><h1 style="color:white;background-color:aquamarine;">STUDENT REGISTRATION FORM</h1></center>
+
+
+<div class="row">
+  <div class="column">
+    <form name='myform'>
+        <h3>NAME <input type="text" name='name' placeholder="NAME"></h3>
+        <h3>EMAIL <input type="text" name='email' placeholder="email"></h3>
+        <h3>WEBSITE <input type="text" name='website' placeholder="website"></h3>
+        <h3>GENDER  <input type="radio" id="male" value="male">Male
+            <input type="radio" id="female" value="female">Female 
+        </h3>
+     
+        <h3>Skills:
+            Java<input type="checkbox" id="myCheck1" value="java">
+            HTML<input type="checkbox" id="myCheck2" value=" html">
+            CSS<input type="checkbox" id="myCheck3" value=" css">
+        </h3>
+      
+        <h3>Image url <input type='file' accept='image/*'  onchange="readURL(this)" ></h3>
+        
+        <center><input  type="submit" onclick="check();return false"> <input type="reset" value="Reset"></center>
+    </form>
+  </div>
+  <div class="column">
+      <center>
+    <h2>Enrolled_Student</h2>
+</center>
+
+     
+    <table style="width:100%">
+        <tr>
+          <th style="width:70%;  color:black;">DESCRIPTION</th>
+          <th style="color:black">IMAGE</th>
+         
+        </tr>
+        <tr>
+            <td>
+            <div id="f1"></div>
+            <div id="f4"></div>
+            <div id="f2"></div>
+            <div id="f3"></div>
+            <div id="f5"></div>
+            <div id="F6"></div>
+            </td>
+            <td>
+              <center> <img src="" alt="select_image" id="img" style='height:150px;'></center>
+                </td>
+           
+        </tr>
+       
+      </table>  
+    
+  </div>
+</div>
+
+
+
+<script>
+    function check()
+    {
+        document.getElementById('f1').innerHTML=document.myform.name.value;
+        document.getElementById('f2').innerHTML=document.myform.email.value;
+        document.getElementById('f3').innerHTML=document.myform.website.value;
+
+           
+            if(document.getElementById('male').checked) {   
+                document.getElementById("f4").innerHTML   
+                    = document.getElementById("male").value;   
+            }  
+            else if(document.getElementById('female').checked) {   
+                document.getElementById("f4").innerHTML   
+                    = document.getElementById("female").value;    
+            }   
+            
+            var Java = document.getElementById("myCheck1");
+            var HTML = document.getElementById("myCheck2");
+            var CSS = document.getElementById("myCheck3");
+
+  if (Java.checked == true && HTML.checked == true && CSS.checked==true){
+  return document.getElementById("f5").innerHTML = "java,"+"html,"+"css";
+   
+  }
+    else if (Java.checked == true && HTML.checked == true){
+  return document.getElementById("f5").innerHTML = "java,"+"html";
+   
+  }
+  
+  else if (Java.checked == true && CSS.checked == true){
+  return document.getElementById("f5").innerHTML = "java,"+"css";
+   
+  }
+  else if (HTML.checked == true && CSS.checked == true){
+  return document.getElementById("f5").innerHTML = "html,"+"css";
+   
+  }
+  else if (Java.checked == true){
+    var j = document.getElementById("myCheck1").value;
+    return document.getElementById("f5").innerHTML = j; 
+  } 
+  else if (HTML.checked == true){
+    var h = document.getElementById("myCheck2").value;
+    return document.getElementById("f5").innerHTML = h;
+  }
+  else if (CSS.checked == true){
+    var c = document.getElementById("myCheck3").value;
+    return document.getElementById("f5").innerHTML = c;
+  } 
+  
+}
+function readURL(input) {
+    if (input.files && input.files[0]) {
+    
+      var reader = new FileReader();
+      reader.onload = function (e) { 
+        document.querySelector("#img").setAttribute("src",e.target.result);
+      };
+
+      reader.readAsDataURL(input.files[0]); 
+    }
+  }
+       
+              
+    
+</script>
+
+</body>
+</html>
